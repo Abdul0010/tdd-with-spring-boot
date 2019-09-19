@@ -30,6 +30,22 @@ public class userController {
          userService.save(user);
          return new ResponseEntity(HttpStatus.CREATED);
     }
+
+    @PutMapping("/user/{id}")
+    public ResponseEntity updateUser(@PathVariable long id,@RequestBody User user){
+
+        return new ResponseEntity(userService.update(id,user),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity deleteUser(@PathVariable long id){
+        return null;
+    }
+    @GetMapping("/users")
+    public ResponseEntity getAllUsers(){
+        return new ResponseEntity(userService.findAll(),HttpStatus.OK);
+    }
+
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void userNotFoundHandler(UserNotFoundException e){}
